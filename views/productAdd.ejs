@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('./partials/head',{title: "Agregar producto" }) %>
+
+    <body class="register">
+        <%- include('./partials/header') %>
+            <main>
+                <div class="row">
+                    <div class="col-12 col-md-8 mx-auto mt-3">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <h4>CARGA DE PRODUCTO</h4>
+
+                            </div>
+                            <div class="card-body">
+
+                                <form class="row" action="" method="POST" enctype="multipart/form-data"
+                                    novalidate>
+                                    <div class="col-12 mb-3 ">
+                                        <input placeholder="Nombre" type="text" name="name" id="name"
+                                            class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null%> " value="<%= locals.old && locals.old.name ? locals.old.name : null %>">
+                                            <small class="text-danger ms-2"><%= locals.errors && errors.name ? errors.name.msg : null%></small>
+                                    </div>
+                                    <div class="col-12 col-md-4 mb-3">
+                                        <select name="category" id="category" class="form-select <%= locals.errors && errors.category ? 'is-invalid' : null%>" required>
+                                            <option value="" selected hidden>Categoría</option>
+                                            <% categories.forEach(category=> { %>
+                                                <option value="<%= category %>" <%= (locals.old) && (old.category == category) ? 'selected' : null %>>
+                                                    <%= category %>
+                                                </option>
+                                                <% }) %>
+                                            </select>
+                                            <small class="text-danger ms-2"><%= locals.errors && errors.category ? errors.category.msg : null%></small>
+                                        
+                                    </div>
+                                    <!-- brands -->
+                                    <div class="col-12 col-md-4 mb-3">
+                                        <select name="brand" id="brand" class="form-select <%= locals.errors && errors.brand ? 'is-invalid' : null%>" required>
+                                            <option value="" selected hidden>Marca</option>
+                                            <% brands.forEach(brand=> { %>
+                                                <option value="<%= brand %>" <%= (locals.old) && (old.brand == brand) ? 'selected' : null %>>
+                                                    <%= brand %>
+                                                </option>
+                                                <% }) %>
+                                            </select>
+                                            <small class="text-danger ms-2"><%= locals.errors && errors.brand ? errors.brand.msg : null%></small>
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+
+                                        <textarea placeholder="Descripcion" name="description" id="description"
+                                            cols="30" rows="3" class="form-control <%= locals.errors && errors.description ? 'is-invalid' : null%> "
+                                            style="resize: none;"><%= locals.old && locals.old.description ? locals.old.description : "Descripción" %> </textarea>
+                                            <small class="text-danger ms-2"><%= locals.errors && errors.description ? errors.description.msg : null%></small>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input placeholder="Precio" type="number" name="price" id="price"
+                                            class="form-control <%= locals.errors && errors.price ? 'is-invalid' : null%>" value="<%= locals.old && locals.old.price ? locals.old.price : null %>">
+                                            <small class="text-danger ms-2"><%= locals.errors && errors.price ? errors.price.msg : null%></small>
+                                    </div>
+
+
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input placeholder="Descuento" type="number" name="discount" id="discount"
+                                            class="form-control <%= locals.errors && errors.discount ? 'is-invalid' : null%>" value="<%= locals.old && locals.old.discount ? locals.old.discount : null %>">
+                                            <small class="text-danger ms-2"><%= locals.errors && errors.discount ? errors.discount.msg : null%></small>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 mb-3 ">
+                                        <input type="file" name="image" id="image" accept="image/*"
+                                            class="form-control">
+                                            <small class="text-danger ms-2"><%= locals.errors && errors.image ? errors.image.msg : null%></small>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <button class="btn btn-dark w-100" type="submit">Agregar</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+            <%- include('./partials/footer') %>
+
+    </body>
+
+</html>
